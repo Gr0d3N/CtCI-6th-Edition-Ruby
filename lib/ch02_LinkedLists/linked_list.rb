@@ -42,7 +42,6 @@ class LinkedList
     @head = @head.next if @head.data == data
     current = @head
     while current.next != nil
-      puts current.next.data
       current.next = current.next.next if current.next.data == data
       current = current.next
     end
