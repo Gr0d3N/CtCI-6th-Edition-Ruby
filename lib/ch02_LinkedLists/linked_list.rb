@@ -10,11 +10,11 @@ end
 class LinkedList
   attr_accessor :head
 
-  def initialize(data)
+  def set_head(data)
     @head = Node.new(data)
   end
 
-  def linked_list(array)
+  def append_many(array)
     if array.length > 0
       array.each do |i|
         self.append(i)
@@ -23,35 +23,44 @@ class LinkedList
   end
 
   def append(data)
-    @head = Node.new(data) if head.nil?
-    current = @head
-    while current.next != nil
-      current = current.next
+    if head.nil?
+      @head = Node.new(data)
+    else
+      current = @head
+      while current.next != nil
+        current = current.next
+      end
+      current.next = Node.new(data)
     end
-    current.next = Node.new(data)
   end
 
   def prepend(data)
-    @head = Node.new(data) if head.nil?
-    new_head = Node.new(data)
-    new_head.next = @head
-    @head = new_head
-  end
-
-  def delete(data)
-    @head = @head.next if @head.data == data
-    current = @head
-    while current.next != nil
-      current.next = current.next.next if current.next.data == data
-      current = current.next
+    if head.nil?
+      @head = Node.new(data)
+    else
+      new_head = Node.new(data)
+      new_head.next = @head
+      @head = new_head
     end
   end
 
-  def to_str
+  def delete(data)
+    if @head.data == data
+      @head = @head.next
+    else
+      current = @head
+      while current.next != nil
+        current.next = current.next.next if current.next.data == data
+        current = current.next
+      end
+    end
+  end
+
+  def to_s
     current = @head
     str = ""
     while current
-      str += "#{current.data}"
+      str += "#{current.data} "
       current = current.next
     end
     return str.strip
