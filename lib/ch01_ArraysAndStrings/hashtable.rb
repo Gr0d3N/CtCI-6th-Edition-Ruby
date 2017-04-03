@@ -19,10 +19,10 @@ class HashTable
 
   def put(k, v)
     location = k.hash % @table_size
-    if buckets[location] == nil
-      buckets[location] = Node.new(k, v)
+    if @buckets[location] == nil
+      @buckets[location] = Node.new(k, v)
     else
-      n = buckets[location]
+      n =@buckets[location]
       while n != nil
         return n.value = v if n.key == k
         p = n
@@ -35,7 +35,7 @@ class HashTable
 
   def get(k)
     location = k.hash % @table_size
-    n = buckets[location]
+    n = @buckets[location]
     while n != nil && n.key != k
       n = n.next
     end
@@ -49,7 +49,7 @@ class HashTable
 
   def remove(k)
     location = k.hash % @table_size
-    n = buckets[location]
+    n = @buckets[location]
     p = nil
     while n != nil && !n.key == k
       p = n
@@ -61,7 +61,7 @@ class HashTable
     @size -= 1
 
     if p == nil
-      buckets[location] = n.next
+      @buckets[location] = n.next
     else
       p.next = n.next
     end
