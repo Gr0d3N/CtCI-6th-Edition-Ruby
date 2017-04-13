@@ -57,13 +57,13 @@ class Tree
 
   def print_pre_order
     puts @data
-    @left.print_in_order if @left != nil 
-    @right.print_in_order if @right != nil
+    @left.print_pre_order if @left != nil 
+    @right.print_pre_order if @right != nil
   end
 
   def print_post_order
-    @left.print_in_order if @left != nil 
-    @right.print_in_order if @right != nil
+    @left.print_post_order if @left != nil 
+    @right.print_post_order if @right != nil
     puts @data
   end
 end

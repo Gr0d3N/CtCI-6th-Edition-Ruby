@@ -10,8 +10,8 @@ end
 class LinkedList
   attr_accessor :head
 
-  def set_head(data)
-    @head = Node.new(data)
+  def initialize(data=nil)
+    data.nil? ? @head = nil : @head = Node.new(data)
   end
 
   def append_many(array)
